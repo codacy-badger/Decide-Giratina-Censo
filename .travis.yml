@@ -10,10 +10,14 @@ before_script:
   - psql -U postgres -c "ALTER USER decide CREATEDB"
 language: python
 python:
-  - "3.6"
+  - "2.7"
+  - "3.3"
+  - "3.6"      # current default Python on Travis CI
 install:
   - pip install -r requirements.txt
   - pip install codacy-coverage
+  - pip install -q Django==$DJANGO_VERSION
+  - python setup.py -q install
   
 script:
   - cd decide
@@ -27,3 +31,7 @@ notifications:
       - jesuselia71@gmail.com
     on_success: always # default: always
     on_failure: always # default: always
+
+env:
+  - DJANGO_VERSION=2.1.13
+  - DJANGO_VERSION=2.2.6
