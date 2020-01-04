@@ -1,0 +1,15 @@
+diff --git a/decide/census/views.py b/decide/census/views.py
+index 593c7fa..467b5e6 100644
+--- a/decide/census/views.py
++++ b/decide/census/views.py
+@@ -15,8 +15,8 @@ from .models import Census
+ 
+ from django.views.generic import TemplateView
+ 
+-class CensusView(TemplateView):
+-   template_name = 'census/census.html'
++#class CensusView(TemplateView):
++#   template_name = 'census/census.html'
+ 
+ 
+ 

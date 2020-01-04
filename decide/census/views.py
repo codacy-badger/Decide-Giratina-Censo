@@ -15,8 +15,8 @@ from .models import Census
 
 from django.views.generic import TemplateView
 
-class CensusView(TemplateView):
-   template_name = 'census/census.html'
+#class CensusView(TemplateView):
+#   template_name = 'census/census.html'
 
 
 
