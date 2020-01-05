@@ -6,9 +6,18 @@ from rest_framework.test import APIClient
 from .models import Census
 from base import mods
 from base.tests import BaseTestCase
+from django.test import TestCase
+
+class SimpleTest(TestCase):
+    def test_basic_addition(self):
+        self.assertEqual(1 + 1, 2)
+
 
 
 class CensusTestCase(BaseTestCase):
+
+
+
 
     def setUp(self):
         super().setUp()
