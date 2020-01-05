@@ -29,7 +29,6 @@ notifications:
   email:
     recipients:
       - jesuselia71@gmail.com
-	
     on_success: always # default: always
     on_failure: always # default: always
 

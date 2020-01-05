@@ -1,0 +1,50 @@
+From de2d26069c93c39c08c33ba93265eba5ce0aafbc Mon Sep 17 00:00:00 2001
+From: Jeselirod <jeselirod@alum.us.es>
+Date: Sat, 4 Jan 2020 17:32:24 +0100
+Subject: [PATCH] probando exportar una vez hecho un commit
+
+---
+ decide/census/views.py |  4 ++--
+ fichero.patch          | 15 +++++++++++++++
+ 2 files changed, 17 insertions(+), 2 deletions(-)
+ create mode 100644 fichero.patch
+
+diff --git a/decide/census/views.py b/decide/census/views.py
+index 593c7fa..467b5e6 100644
+--- a/decide/census/views.py
++++ b/decide/census/views.py
+@@ -15,8 +15,8 @@ from .models import Census
+ 
+ from django.views.generic import TemplateView
+ 
+-class CensusView(TemplateView):
+-   template_name = 'census/census.html'
++#class CensusView(TemplateView):
++#   template_name = 'census/census.html'
+ 
+ 
+ 
+diff --git a/fichero.patch b/fichero.patch
+new file mode 100644
+index 0000000..1ee32cf
+--- /dev/null
++++ b/fichero.patch
+@@ -0,0 +1,15 @@
++diff --git a/decide/census/views.py b/decide/census/views.py
++index 593c7fa..467b5e6 100644
++--- a/decide/census/views.py
+++++ b/decide/census/views.py
++@@ -15,8 +15,8 @@ from .models import Census
++ 
++ from django.views.generic import TemplateView
++ 
++-class CensusView(TemplateView):
++-   template_name = 'census/census.html'
+++#class CensusView(TemplateView):
+++#   template_name = 'census/census.html'
++ 
++ 
++ 
+-- 
+2.17.1
+
