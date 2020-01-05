@@ -1,37 +1,34 @@
 dist: xenial
-
 services:
-  - postgresql
+- postgresql
 addons:
-  postgresql: "9.4"
+  postgresql: '9.4'
 before_script:
-  - psql -U postgres -c "create user decide password 'decide'"
-  - psql -U postgres -c "create database test_decide owner decide"
-  - psql -U postgres -c "ALTER USER decide CREATEDB"
+- psql -U postgres -c "create user decide password 'decide'"
+- psql -U postgres -c "create database test_decide owner decide"
+- psql -U postgres -c "ALTER USER decide CREATEDB"
 language: python
 python:
-  - "2.7"
-  - "3.3"
-  - "3.6"      # current default Python on Travis CI
+- '3.6'
 install:
-  - pip install -r requirements.txt
-  - pip install codacy-coverage
-  - pip install -q Django==$DJANGO_VERSION
-  - python setup.py -q install
-  
+- pip install -r requirements.txt
+- pip install codacy-coverage
 script:
-  - cd decide
-  - coverage run --branch --source=. ./manage.py test --keepdb --with-xunit
-  - coverage xml
-  - python-codacy-coverage -r coverage.xml
-  
+- cd decide
+- coverage run --branch --source=. ./manage.py test --keepdb --with-xunit
+- coverage xml
+- python-codacy-coverage -r coverage.xml
+- cp travis_local_settings.py local_settings.py
+- python ./manage.py test --keepdb
 notifications:
   email:
     recipients:
-      - jesuselia71@gmail.com
-    on_success: always # default: always
-    on_failure: always # default: always
-
-env:
-  - DJANGO_VERSION=2.1.13
-  - DJANGO_VERSION=2.2.6
+    - jesuselia71@gmail.com
+    on_success: always
+    on_failure: always
+deploy:
+  provider: heroku
+  app: practica7-travis
+  strategy: git
+  api_key:
+    secure: Bwa3Au6ErtpUWYqBpKq+XTqQqDzNOqJLlkGTBbKfgW2IsXdnw8nVC/b7nzErZXw9Fj8Hz26LfSyyVHAL+oQZKy/IY+ov9IsOA8oAbYLOLy17/o2hw8yznjQd4R52dwRpqiUsaYNbXNHrU/jpL/F9CGZkPNwkOgHuBH11meZd5go0AjZauE14iDTnj5DfeluQUpgLsUGE2ixxl9ZHZSEgWHHR5Su5rLZa94NkH+qeHnWyM5OzVYfXarx4an6jdSD3kaNGCDGsjbXgaqfPnp2ZVKSB9K0kNLh2cicixNXvV75rbioEV3lgwFLnT/fIWE9G4UKQ6GtyxOCnH4zz3hJeVBYxLWVDmoxyvzaFRVFHo9pDy7sq2Iw8jVRpOjcXKUaBp3WKDm94H0+ANFv/kWfBZhrw/vcYe4/IAd3zIQma0BQ1YVkQ2mtbjDEfaAOdbdeATu35eWTuWFVwP9/aYLjLk+P3el/7iTGPaLQoCd9bsmRnh5VLBJqnUfT53ZhtkGXjhANIUGsyZa68sS+WjlP8jeDhGJV3XUrIIfOcjf5J37y2Yt6/vSEJEUxz9/F1NyK2RqtT5L8y3dmtnX08BsehZc+g8T58iu8Ddprp/x3TVS0It3MAbuwKJCFUcCOLA3NlMeHMlORz0uxMwpeMNoV3dgL7KGYTFqSO511ZUJsZChc=

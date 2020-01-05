@@ -72,7 +72,7 @@ MODULES = [
 ]
 
 #BASEURL = 'https://practica7-jeselirod.herokuapp.com'
-BASEURL = 'https://practica6-examen.herokuapp.com'
+BASEURL = 'http://heroku-meet-travis.herokuapp.com'
 
 APIS = {
     'authentication': BASEURL,
